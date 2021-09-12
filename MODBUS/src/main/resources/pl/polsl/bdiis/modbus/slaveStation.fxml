@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.polsl.bdiis.modbus.SlaveStationController">
+    <children>
+        <Label text="Stacja Slave">
+         <font>
+            <Font name="Noto Serif Light" size="29.0" />
+         </font></Label>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <bottom>
+              <Button fx:id="goBackButton" onAction="#goBackToSelection" text="Wróć do wyboru stacji" BorderPane.alignment="CENTER" />
+         </bottom>
+         <center>
+            <TabPane prefHeight="174.0" prefWidth="369.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="Odebrane Dane">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox layoutX="113.0" layoutY="14.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <VBox alignment="TOP_CENTER" prefHeight="126.0" prefWidth="68.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Odebrana Ramka" />
+                                          <TextArea fx:id="hexReceivedTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                          <Label text="Wysłana Ramka" />
+                                          <TextArea fx:id="hexSentTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Odebrane Dane" />
+                                          <TextArea fx:id="dataTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Pojemnik na tekst">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutY="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <Label text="Pojemnik na dane do wysłania Masterowi" />
+                                    <TextArea fx:id="slaveDataTextArea" prefHeight="200.0" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Parametry">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="210.0" prefWidth="426.0">
+                           <children>
+                              <HBox layoutX="103.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="99.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Adres Slave (cyfra)" />
+                                          <Spinner fx:id="slaveAddressSpinner" />
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox alignment="CENTER" prefHeight="146.0" prefWidth="154.0">
+                                       <children>
+                                          <Label text="Ograniczenie czasowe" />
+                                          <Spinner fx:id="charSpinner" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>

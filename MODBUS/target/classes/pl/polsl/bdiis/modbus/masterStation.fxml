@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.polsl.bdiis.modbus.MasterStationController">
+    <children>
+      <Label text="Stacja Master">
+         <font>
+            <Font name="Noto Serif Light" size="29.0" />
+         </font>
+      </Label>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <center>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="Wysłanie rozkazu">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox fx:id="masterCommandVBox" alignment="TOP_CENTER" layoutX="250.0" layoutY="62.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" spacing="20.0">
+                                       <children>
+                                          <RadioButton id="broadcast" fx:id="broadcastRadioButton" mnemonicParsing="false" onAction="#updateModeDependentFields" text="Tryb Broadcast" />
+                                          <RadioButton id="addressed" fx:id="addressedRadioButton" mnemonicParsing="false" onAction="#updateModeDependentFields" text="Tryb Adresowany" />
+                                       </children>
+                                    </HBox>
+                                    <Label prefHeight="22.0" prefWidth="62.0" text="Adres Slave" />
+                                    <Spinner fx:id="slaveAddressSpinner" />
+                                    <ComboBox fx:id="commandNumberComboBox" onAction="#onCommandChanged" prefWidth="150.0" promptText="Numer Rozkazu" />
+                                    <Button fx:id="sendCommandButton" mnemonicParsing="false" onAction="#onSendCommand" text="Wyślij rozkaz" />
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Odbiór danych">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <VBox alignment="TOP_CENTER" prefHeight="126.0" prefWidth="68.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Odebrana Ramka" />
+                                          <TextArea fx:id="hexReceivedTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                          <Label text="Wysłana Ramka" />
+                                          <TextArea fx:id="hexSentTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Odebrane Dane" />
+                                          <TextArea fx:id="dataTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                <Tab text="Parametry">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="276.0" layoutY="34.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <Label text=" Ograniczenie czasowe (timeout) na wykonanie transakcji (milisekundy)" />
+                                    <Spinner fx:id="timeoutSpinner" />
+                                    <Label text="Liczba retransmisji w przypadku niepowodzenia" />
+                                    <Spinner fx:id="retransmissionSpinner" />
+                                    <Label text="Ograniczenie czasowe (0 do 1 s co 10 ms) na odstęp pomiędzy znakami ramki (milisekundy)" />
+                                    <Spinner fx:id="charSpinner" />
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+         <bottom>
+            <Button fx:id="goBackButton" onAction="#goBackToSelection" text="Wróć do wyboru stacji" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>
